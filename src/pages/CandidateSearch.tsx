@@ -30,7 +30,7 @@ const CandidateSearch = () => {
     }
   }, [searchUser]);
 
-
+//random comment to force commit
   return <div>
     <h1>CandidateSearch</h1>
     <div id='candidateCare'>
