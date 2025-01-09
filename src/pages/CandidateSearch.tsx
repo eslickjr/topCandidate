@@ -2,9 +2,47 @@ import { useState, useEffect } from 'react';
 import { searchGithub, searchGithubUser } from '../api/API';
 
 const CandidateSearch = () => {
-  const [searchResults, setSearchResults] = useState([]);
+  interface User {
+    login: string;
+    avatar_url: string;
+    name: string;
+    location: string;
+    email: string;
+    company: string;
+    bio: string;
+  }
+  
+  const [searchResults, setSearchResults] = useState<User[]>([]);
   const [searchUser, setSearchUser] = useState('');
-  const [searchUserResults, setSearchUserResults] = useState({login: '', avatar_url: 'https://avatars.githubusercontent.com/u/1?v=4',  name: '', location: '', email: '', company: '', bio: ''});
+  const [searchUserResults, setSearchUserResults] = useState<User>({login: '', avatar_url: '',  name: '', location: '', email: '', company: '', bio: ''});
+
+  const declineCandidate = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    const userIndex = Math.floor(Math.random()*(searchResults.length - 1));
+    setSearchUser(searchResults[userIndex].login);
+  }
+
+  const acceptCandidate = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    const potentialCandidates = JSON.parse(localStorage.getItem('potentialCandidates') || '[]');
+
+    if (!checkCandidates(searchUserResults, potentialCandidates)) {
+      potentialCandidates.push(searchUserResults);
+      localStorage.setItem('potentialCandidates', JSON.stringify(potentialCandidates)); 
+    }
+
+    const userIndex = Math.floor(Math.random()*(searchResults.length - 1));
+    setSearchUser(searchResults[userIndex].login);
+  }
+
+  const checkCandidates = (candidate: User, candidateList: User[]) => {
+    for (let i = 0; i < candidateList.length; i++) {
+      if (candidate.login === candidateList[i].login) {
+        return true;
+      }
+    }
+    return false;
+  }
 
   useEffect(() => {
     if (searchResults && searchResults.length === 0) {
@@ -19,6 +57,7 @@ const CandidateSearch = () => {
           }
         });
     }
+    //setSearchResults([{login: 'test', avatar_url: 'https://avatars.githubusercontent.com/u/1?v=4',  name: 'test', location: 'test', email: 'test', company: 'test', bio: 'test'}]);
   }, [searchResults]);
 
   useEffect(() => {
@@ -43,8 +82,8 @@ const CandidateSearch = () => {
         <p className='candidateText'>Bio: {searchUserResults.bio}</p>
       </div>
       <form id='candidateForm'>
-        <button id='declineCandidate'>-</button>
-        <button id='acceptCandidate'>+</button>
+        <button id='declineCandidate' onClick={declineCandidate}>-</button>
+        <button id='acceptCandidate' onClick={acceptCandidate}>+</button>
       </form>
     </div>
   </div>;
