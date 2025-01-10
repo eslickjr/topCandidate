@@ -13,6 +13,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+#root {
+  width: 100%;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -46,7 +50,7 @@ h1 {
 button {
   border-radius: 1.2em;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  padding: 0.6em 1.0em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
@@ -90,6 +94,10 @@ tr {
   color: white;
 }
 
+td {
+  overflow-wrap: break-word;
+}
+
 tbody tr:nth-child(odd) {
   background-color: #333333;
 }
@@ -119,6 +127,17 @@ tbody tr:nth-child(odd) {
   table-layout: fixed;
 }
 
+#candidateSearch {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#candidateCare {
+  width: 50%;
+}
+
 #candidateInfo {
   border-radius: 30px;
   background-color: #000;
@@ -132,6 +151,7 @@ tbody tr:nth-child(odd) {
 
 .candidateText {
   margin-left: 20px;
+  overflow-wrap: break-word;
 }
 
 #candidateForm {
@@ -152,7 +172,17 @@ tbody tr:nth-child(odd) {
   background-color: #ff0000;
 }
 
+.noPotentialCandidates {
+  text-align: center;
+}
+
 .candidateImg {
   width: 50px;
   height: 50px;
+}
+
+.candidateImgContainer, .rejectCandidateContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

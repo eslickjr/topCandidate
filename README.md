@@ -1,33 +1,26 @@
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-* [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md), which uses [Babel](https://babeljs.io/) for Fast Refresh
-* [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc), which uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you're developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-* Configure the top-level `parserOptions` property as follows:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-* Replace `plugin:@typescript-eslint/recommended` with `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`.
-* Optionally, add `plugin:@typescript-eslint/stylistic-type-checked`.
-* Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` and `plugin:react/jsx-runtime` to the `extends` list.
-
----
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+# Top Candidate
+  
+  ## Description
+  This allows you to view potential software developer candidates from github. It was tiring searching through each individual developer on github. This allows you to search many swiftly. https://drive.google.com/file/d/1438ZdE1JQZRHxTyblYBo5lb9fLHglcY3/view?usp=sharing
+  ## Table of Contents
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Contribution](#contribution)
+  - [Test](#test)
+  - [License](#license)
+  - [Questions](#questions)
+  ## Installation
+  You would run npm install and then npm run dev on your local environment if you were wanting to visit via localhost. Alternatively you can visit the live website at: https://topcandidatesearch.netlify.app/
+  ## Usage
+  Go to the home page and approve (+) or decline (-) potential candidates. You can click github links if you'd like to look further into them. Go to the potential candidates page to see the candidates you've approved and further refine your potential candidates.
+  ## Contribution
+  N/A.
+  ## Test
+  N/A.
+  
+  
+  ## Questions
+  For questions, please contact me:
+  - GitHub: eslickjr
+  - Email: joshuareslick@gmail.com
+  

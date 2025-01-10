@@ -8,6 +8,7 @@ const SavedCandidates = () => {
     email: string;
     company: string;
     bio: string;
+    html_url: string;
   }
 
   const potentialCandidates = JSON.parse(localStorage.getItem('potentialCandidates') || '[]');
@@ -25,23 +26,48 @@ const SavedCandidates = () => {
     if (tableRow) {
       tableRow.remove();
     }
+    if (potentialCandidates.length === 0) {
+      localStorage.removeItem('potentialCandidates');
+
+      const emptyRow = document.createElement('tr');
+      const emptyCell = document.createElement('td');
+      emptyCell.colSpan = 8;
+      emptyCell.className = 'noPotentialCandidates';
+      emptyCell.textContent = 'No potential candidates';
+
+      emptyRow.appendChild(emptyCell);
+      tableBody?.appendChild(emptyRow);
+    }
   }
 
+
   const renderTableRows = () => {
+    if (potentialCandidates.length === 0) {
+      console.log('No potential candidates');
+      return <tr><td colSpan={8} className='noPotentialCandidates'>No potential candidates</td></tr>;
+    }
+    console.log('Potential candidates:', potentialCandidates);
     return potentialCandidates.map((candidate: Candidate, index: number) => (
       <tr key={index}>
-        <td>
-          <img className="candidateImg" src={candidate.avatar_url} alt={candidate.login} />
+        <td className="candidateImgContainer">
+          <div className="candidateImgOverlay">
+            <img className="candidateImg" src={candidate.avatar_url} alt={candidate.login} />
+          </div>
         </td>
         <td>
-          {candidate.login}
+          {candidate.login}<br />
           <i>({candidate.name === null ? candidate.login : candidate.name})</i>
         </td>
         <td>{candidate.location}</td>
-        <td>{candidate.email}</td>
+        <td>
+          <a href={`mailto:${candidate.email}`}>{candidate.email}</a>
+        </td>
         <td>{candidate.company}</td>
         <td>{candidate.bio}</td>
         <td>
+          <a href={candidate.html_url} target="_blank" rel="noreferrer">{candidate.html_url}</a>
+        </td>
+        <td className="rejectCandidateContainer">
           <button className="rejectCandidate" onClick={rejectCandidate}>-</button>
         </td>
       </tr>
@@ -51,7 +77,7 @@ const SavedCandidates = () => {
   return (
     <>
       <h1>Potential Candidates</h1>
-      <table>
+      <table className="table">
         <thead>
           <tr>
             <th>Image</th>
@@ -60,6 +86,7 @@ const SavedCandidates = () => {
             <th>Email</th>
             <th>Company</th>
             <th>Bio</th>
+            <th>Github</th>
             <th>Reject</th>
           </tr>
         </thead>
