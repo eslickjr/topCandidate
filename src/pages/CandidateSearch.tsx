@@ -49,12 +49,14 @@ const CandidateSearch = () => {
     if (searchResults && searchResults.length === 0) {
       searchGithub().then((data) => {
           console.log(data);
-          setSearchResults(data);
           if (data && data.length > 0) {
+            setSearchResults(data);
             const userIndex = Math.floor(Math.random()*(data.length - 1));
             console.log('userIndex:', userIndex);
             setSearchUser(data[userIndex].login);
             console.log('searchUser:', data[userIndex].login);
+          } else {
+            setSearchResults([]);
           }
         });
     }
