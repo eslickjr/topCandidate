@@ -15,7 +15,7 @@ const CandidateSearch = () => {
   
   const [searchResults, setSearchResults] = useState<User[]>([]);
   const [searchUser, setSearchUser] = useState('');
-  const [searchUserResults, setSearchUserResults] = useState<User>({login: '', avatar_url: '',  name: '', location: '', email: '', company: '', bio: '', html_url: ''});
+  const [searchUserResults, setSearchUserResults] = useState<User>({} as User);
 
   const declineCandidate = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
